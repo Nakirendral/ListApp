@@ -18,6 +18,15 @@ class ListsController < ApplicationController
       render 'new'
     end
   end
+  
+  def update
+    @list = List.find(params[:id])
+    if @list.update(title: params[:title],content: params[:content])
+      render @list
+    else
+      render 'Unable to update the list'
+    end
+  end
 
   private
   def list_params
