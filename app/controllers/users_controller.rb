@@ -1,25 +1,25 @@
 class UsersController < ApplicationController
 
   def index
-    @lists = List.all.order("created_at DESC")
+    @users = User.all.order("created_at DESC")
   end
 
   def new
-    @list = List.new
+    @user = User.new
   end
 
   def create
-    @list = List.new(list_params)
+    @user = User.new(user_params)
 
     if @post.save
-      redirect_to @list
+      redirect_to @user
     else
       render 'new'
     end
   end
 
   private
-  def list_params
-    params.require(:list).permit(:title, :content)
+  def user_params
+    params.require(:user).permit(:userid, :username, :email, :first_name, :last_name)
   end
 end
