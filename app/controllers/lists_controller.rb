@@ -2,7 +2,11 @@ class ListsController < ApplicationController
 #before_action :find_list, only: [:show, :update, :edit, :destroy]
 
   def index
-    @lists = List.all.order("created_at DESC")
+    @lists = List.all
+  end
+
+  def show
+
   end
 
   def new
@@ -12,10 +16,10 @@ class ListsController < ApplicationController
   def create
     @list = List.new(list_params)
 
-    if @post.save
+    if @list.save
       redirect_to @list
-    else
-      render 'new'
+    # else
+    #   render 'new'
     end
   end
 
