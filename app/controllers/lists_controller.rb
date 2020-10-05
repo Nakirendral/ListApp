@@ -9,6 +9,20 @@ class ListsController < ApplicationController
     @list = List.find_by_id(params[:id])
   end
 
+  def edit
+    @list = List.find_by_id(params[:id])
+  end
+
+  def update 
+    @list = List.find_by_id(params[:id])
+    if @list.update_attributes(list_params)
+      redirect_to list: :index
+      flash[:notice] = "List was updated."
+    else
+      render 'edit'
+    end
+  end
+
   def new
     @list = List.new
   end
@@ -25,6 +39,6 @@ class ListsController < ApplicationController
 
   private
   def list_params
-    params.require(:list).permit(:title, :content, :user_id, :score)
+    params.require(:list).permit(:id, :title, :content, :user_id, :score)
   end
 end

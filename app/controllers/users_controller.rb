@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user.find(user_params.id)
+    @user = User.find_by_id(params[:id])
 
     if @user.save
       redirect_to @user
