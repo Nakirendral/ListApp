@@ -9,6 +9,18 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def update
+    @user = User.update
+  end
+
+  def edit
+    @user.find(user_params.id)
+
+    if @user.save
+      redirect_to @user
+    end
+  end
+
   def show
     @user = User.find_by_id(params[:id])
   end 
