@@ -6,7 +6,7 @@ class ListsController < ApplicationController
   end
 
   def show
-
+    @list = List.find_by_id(params[:id])
   end
 
   def new
@@ -25,6 +25,6 @@ class ListsController < ApplicationController
 
   private
   def list_params
-    params.require(:list).permit(:title, :content)
+    params.require(:list).permit(:title, :content, :user_id, :score)
   end
 end
