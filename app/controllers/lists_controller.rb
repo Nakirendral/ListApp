@@ -2,7 +2,7 @@ class ListsController < ApplicationController
 #before_action :find_list, only: [:show, :update, :edit, :destroy]
 
   def index
-    @lists = List.all
+    @lists = List.all.order("created_at DESC")
   end
 
   def show
@@ -18,8 +18,8 @@ class ListsController < ApplicationController
 
     if @list.save
       redirect_to @list
-    # else
-    #   render 'new'
+    else
+     render 'new'
     end
   end
 
