@@ -1,25 +1,47 @@
 class UsersController < ApplicationController
+#before_action :find_user, only: [:show, :update, :edit, :destroy]
 
   def index
-    @lists = List.all.order("created_at DESC")
+    @users = User.all
   end
 
   def new
-    @list = List.new
+    @user = User.new
   end
 
-  def create
-    @list = List.new(list_params)
+  def update
+    @user = User.update
+  end
 
-    if @post.save
-      redirect_to @list
-    else
-      render 'new'
+  def edit
+    @user.find(user_params.id)
+
+    if @user.save
+      redirect_to @user
     end
   end
 
+  def show
+    @user = User.find_by_id(params[:id])
+  end 
+
+  def create
+    @user = User.new(user_params)
+
+    if @user.save
+      redirect_to @user
+    # else
+    #   render 'new'
+    end
+  end
+
+  def destroy
+    User.find(params[:id]).destroy
+    redirect_to new_users_path
+  end
+
   private
-  def list_params
-    params.require(:list).permit(:title, :content)
+  def user_params
+    params.require(:user).permit(:id, :username, :email, :first_name, :last_name)
   end
 end

@@ -5,6 +5,10 @@ class ListsController < ApplicationController
     @lists = List.all.order("created_at DESC")
   end
 
+  def show
+
+  end
+
   def new
     @list = List.new
   end
@@ -12,10 +16,10 @@ class ListsController < ApplicationController
   def create
     @list = List.new(list_params)
 
-    if @post.save
+    if @list.save
       redirect_to @list
     else
-      render 'new'
+     render 'new'
     end
   end
 
