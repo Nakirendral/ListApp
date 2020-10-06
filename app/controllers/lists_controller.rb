@@ -16,12 +16,12 @@ class ListsController < ApplicationController
   def create
     @list = List.new(list_params)
 
-  if @list.save
-    redirect_to @list
-  else
-    render 'new'
+    if @list.save
+      redirect_to @list
+    else
+     render 'new'
+    end
   end
-end
 
   private
   def list_params
