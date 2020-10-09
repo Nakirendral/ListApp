@@ -9,6 +9,20 @@ class ListsController < ApplicationController
     @list = List.find_by_id(list_params[:id])
   end
 
+  def edit
+    @list = List.find_by_id(params[:id])
+  end
+
+  def update 
+    @list = List.find_by_id(params[:id])
+    if @list.update_attributes(list_params)
+      redirect_to list: :index
+      flash[:notice] = "List was updated."
+    else
+      render 'edit'
+    end
+  end
+
   def new
     @list = List.new
   end
