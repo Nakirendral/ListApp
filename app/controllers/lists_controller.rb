@@ -32,8 +32,8 @@ class ListsController < ApplicationController
 
     if @list.save
       redirect_to @list
-    # else
-    #   render 'new'
+    else
+     render 'new'
     end
   end
 
