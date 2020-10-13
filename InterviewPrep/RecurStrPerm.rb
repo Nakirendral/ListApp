@@ -1,27 +1,31 @@
 def permie(ans, str)
-  tempStr = str.split("")
-  tempStr.delete_at(tempStr.length)
+  temp_str = str
   puts ans
-  puts tempStr
+  puts temp_str
   
-  tempArray = []
-  
-  if tempStr.length == 1
-    return ans + tempStr[0].to_s
+  if ans == ""
+    temp_array = []
+    temp_array << temp_str.join
+  end
+
+  if temp_str.length == 1
+    return ans + temp_str[0].to_s
   else
-    for i in 0..tempStr.length-1
-      temperStr = tempStr
-      puts i
-      puts tempArray
-      tempArray << permie(ans + temperStr.delete_at(i).to_s, temperStr.join)
+    temp_str.each_with_index do |ch, idx|
+      temper_str = temp_str
+      puts idx
+      puts temp_array
+      puts temper_str
+      new_letter = temper_str.delete_at(idx)
+      temp_array << permie(ans + new_letter, temper_str)
     end 
   end
 
-  return tempArray
+  return temp_array
 end
 
 
 puts "Enter your string: "
-str = gets.chomp
+str = gets.chomp.split("")
 puts "Your string is #{str}"
 puts "Your permutations are: #{permie("", str)} "
