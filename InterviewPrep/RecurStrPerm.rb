@@ -1,27 +1,26 @@
 def permie(ans, str)
-  temp_str = str
-  puts ans
-  puts temp_str
   
   if ans == ""
     temp_array = []
-    temp_array << temp_str.join
   end
 
-  if temp_str.length == 1
-    return ans + temp_str[0].to_s
-  else
-    temp_str.each_with_index do |ch, idx|
-      temper_str = temp_str
-      puts idx
-      puts temp_array
-      puts temper_str
-      new_letter = temper_str.delete_at(idx)
-      temp_array << permie(ans + new_letter, temper_str)
+  if str.length == 1
+     return ans + str[0].to_s
+  elsif str.length > 1
+    str.each_with_index do |ch, idx|
+      temp_str = str
+      new_letter = temp_str.delete_at(idx).to_s
+      ans += new_letter
+      puts "|| ch is: ", ch, "|| index is: ", idx, "|| new letter is: ", new_letter, "|| answer is: ", ans,"|| temp_str is: ", temp_str, "\n"
+      if temp_str.length == str.length - 1
+        temp_array.insert(permie(ans, temp_str))
+      else
+        permie(ans, temp_str)
+      end
     end 
+  else
+    return temp_array
   end
-
-  return temp_array
 end
 
 
