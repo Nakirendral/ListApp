@@ -1,12 +1,15 @@
-class EntryController < ApplicationController
+class EntriesController < ApplicationController
   #before_action :find_entry, only: [:show, :update, :edit, :destroy]
+  #before_action :find_list, only: [:show, :update, :edit, :destroy]
 
   def index
     @entries = Entry.all.order("created_at DESC")
+    @lists = List.all.order("created_at DESC")
   end
 
   def show
-    @entry = Entry.find_by_id(params[:id])
+    @entry = Entry.find_by_id(entry_params[:id])
+    @list = List.find_by_id(entry_params[:list_id])
   end
 
   def edit
@@ -39,6 +42,6 @@ class EntryController < ApplicationController
 
   private
   def entry_params
-    params.require(:entry).permit(:content, :list_id, :score, :id)
+    params.permit(:content, :list_id, :score, :id)
   end
 end

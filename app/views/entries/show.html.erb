@@ -2,7 +2,7 @@
 
 <div class="section">
   <p>
-    Belongs to User <%= @list.user_id %> within List <%= @entry.list_id%>
+    Belongs to User <%= @entry.list.user_id %> within List <%= @entry.list_id %>
     <br>
     <%= @entry.content %>
     <br>
