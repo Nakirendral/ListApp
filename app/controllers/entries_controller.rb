@@ -4,7 +4,6 @@ class EntriesController < ApplicationController
 
   def index
     @entries = Entry.all.order("created_at DESC")
-    @lists = List.all.order("created_at DESC")
   end
 
   def show
