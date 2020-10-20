@@ -1,0 +1,13 @@
+<h1 class="title">Entry <%= @entry.id %></h1>
+
+<div class="section">
+  <p>
+    Belongs to User <%= @entry.list.user.username %> within List <%= @entry.list.title %>
+    <br>
+    <%= @entry.content %>
+    <br>
+    Score: <%= @entry.score %>
+    <br>
+    <%= link_to 'Edit Entry', edit_entry_path, class: 'button alt' %>
+  </p> 
+</div>
