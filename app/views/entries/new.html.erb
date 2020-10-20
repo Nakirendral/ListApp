@@ -1,9 +1,8 @@
 <h1 class="title">New Entry</h1>
 
 <div class="section">
-  <%= simple_form_for @entry do |f| %>
-  <%= f.association :list %>
-  <br>>
+  <%= simple_form_for [@list, @entry] do |f| %>
+  <br>
   </div>
   <div class="field">
     <div class="control">

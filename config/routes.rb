@@ -3,6 +3,5 @@ Rails.application.routes.draw do
   resources :lists do
     resources :entries
   end
-  resources :entries
   root 'users#index'
 end
