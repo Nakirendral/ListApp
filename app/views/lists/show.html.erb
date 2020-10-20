@@ -12,6 +12,6 @@
     <% end %>
     <br>
     <%= link_to 'Edit List', edit_list_path, class: 'button alt' %>
-    <%= link_to 'Add New Entry', new_entry_path, class: 'button alt' %>
+    <%= link_to 'Add New Entry', new_list_entry_path(@list.id), class: 'button alt' %>
   </p> 
 </div>

@@ -7,16 +7,18 @@ class EntriesController < ApplicationController
   end
 
   def show
-    @entry = Entry.find_by_id(entry_params[:id])
-    @list = List.find_by_id(entry_params[:list_id])
+    @entry = Entry.find_by_id(params[:id])
+    @list = @entry.list
   end
 
   def edit
     @entry = Entry.find_by_id(params[:id])
+    @list = @entry.list
   end
 
   def update 
     @entry = Entry.find_by_id(params[:id])
+    @list = @entry.list
     if @entry.update_attributes(entry_params)
       redirect_to entry: :index
       flash[:notice] = "Entry was updated."
@@ -31,7 +33,7 @@ class EntriesController < ApplicationController
 
   def create
     @entry = Entry.new(entry_params)
-
+    @list = @entry.list
     if @entry.save
       redirect_to @entry
     else
