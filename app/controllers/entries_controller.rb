@@ -39,7 +39,7 @@ class EntriesController < ApplicationController
       #Rails convention - doesn't do anything but it does enforce bangers - for mutators
       # things that change state
       #Also used in this case for validation - when saving to db, will do 2 things, errors will not silently fail!
-      redirect_to @entry
+      render 'show'
     else
      render 'new'
     end
