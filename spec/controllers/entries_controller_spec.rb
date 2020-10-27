@@ -27,5 +27,12 @@ RSpec.describe EntriesController, type: :controller do
       get :show, params: {list_id: 1, id: 1}
       expect(assigns(:list)).not_to eq(list)
     end
+
+    describe 'POST #create' do
+      it "creates an entry based on simple_form input" do
+        user = User.create!(id: 1, username: "Squid", email: "s@s.com", first_name: "Sid", last_name: "Monty")
+        list = List.create!(id: 2, title: "heyo", user: user)
+        post :create, params: {}
+      
   end
 end

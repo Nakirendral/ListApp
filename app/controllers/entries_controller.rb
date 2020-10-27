@@ -3,6 +3,7 @@ class EntriesController < ApplicationController
   #before_action :find_list, only: [:show, :update, :edit, :destroy]
 
   def index
+    @list = List.find_by_id(params[:list_id])
     @entries = Entry.all.order("created_at DESC")
   end
 
@@ -27,14 +28,16 @@ class EntriesController < ApplicationController
   end
 
   def new
+    @list = List.find_by_id(params[:list_id])
     @entry = Entry.new
   end
 
   def create
+    @list = List.find_by_id(params[:list_id])
     @entry = Entry.new(entry_params)
 
-    if @entry.save
-      redirect_to @entry
+    if @entry.save!
+      redirect_to list_entry_url(@list, @entry)
     else
      render 'new'
     end
