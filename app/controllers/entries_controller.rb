@@ -18,6 +18,7 @@ class EntriesController < ApplicationController
 
   def update 
     @entry = Entry.find_by_id(params[:id])
+    @list = @entry.list
     if @entry.update_attributes(entry_params)
       redirect_to entry: :index
       flash[:notice] = "Entry was updated."
@@ -28,12 +29,16 @@ class EntriesController < ApplicationController
 
   def new
     @entry = Entry.new
+    @list = List.find_by_id(params[:list_id])
   end
 
   def create
     @entry = Entry.new(entry_params)
-
-    if @entry.save
+    @entry.list = List.find_by_id(params[:list_id])
+    if @entry.save!
+      #Rails convention - doesn't do anything but it does enforce bangers - for mutators
+      # things that change state
+      #Also used in this case for validation - when saving to db, will do 2 things, errors will not silently fail!
       redirect_to @entry
     else
      render 'new'
