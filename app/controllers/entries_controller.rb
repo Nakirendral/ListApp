@@ -7,13 +7,13 @@ class EntriesController < ApplicationController
   end
 
   def show
-    @entry = Entry.find_by_id(params[:id])
-    @list = @entry.list
+    @entry = Entry.find_by_id(entry_params[:id])
+    @list = List.find_by_id(entry_params[:list_id])
   end
 
   def edit
     @entry = Entry.find_by_id(params[:id])
-    @list = @entry.list
+    @list = List.find_by_id(params[:list_id])
   end
 
   def update 
@@ -39,7 +39,7 @@ class EntriesController < ApplicationController
       #Rails convention - doesn't do anything but it does enforce bangers - for mutators
       # things that change state
       #Also used in this case for validation - when saving to db, will do 2 things, errors will not silently fail!
-      redirect_to @entry
+      render 'show'
     else
      render 'new'
     end
