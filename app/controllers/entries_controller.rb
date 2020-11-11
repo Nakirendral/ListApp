@@ -35,6 +35,7 @@ class EntriesController < ApplicationController
   def create
     @entry = Entry.new(entry_params)
     @entry.list = List.find_by_id(params[:list_id])
+    debugger
     if @entry.save!
       #Rails convention - doesn't do anything but it does enforce bangers - for mutators
       # things that change state
