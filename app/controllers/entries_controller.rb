@@ -30,11 +30,13 @@ class EntriesController < ApplicationController
   def new
     @entry = Entry.new
     @list = List.find_by_id(params[:list_id])
+    debugger
   end
 
   def create
     @entry = Entry.new(entry_params)
-    @entry.list = List.find_by_id(params[:list_id])
+    @list = List.find_by_id(params[:list_id])
+    @entry.list = @list
     debugger
     if @entry.save!
       #Rails convention - doesn't do anything but it does enforce bangers - for mutators
@@ -42,12 +44,13 @@ class EntriesController < ApplicationController
       #Also used in this case for validation - when saving to db, will do 2 things, errors will not silently fail!
       render 'show'
     else
+      # throw an error
      render 'new'
     end
   end
 
   private
   def entry_params
-    params.permit(:content, :list_id, :score, :id)
+    params.require(:entry).permit(:content, :score)
   end
 end
