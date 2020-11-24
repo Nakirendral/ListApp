@@ -3,6 +3,7 @@ class EntriesController < ApplicationController
   #before_action :find_list, only: [:show, :update, :edit, :destroy]
 
   def index
+    @list = List.find_by_id(params[:list_id])
     @entries = Entry.all.order("created_at DESC")
   end
 
