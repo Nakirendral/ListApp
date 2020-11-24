@@ -8,8 +8,8 @@ class EntriesController < ApplicationController
   end
 
   def show
-    @entry = Entry.find_by_id(entry_params[:id])
-    @list = List.find_by_id(entry_params[:list_id])
+    @entry = Entry.find_by_id(params[:id])
+    @list = List.find_by_id(params[:list_id])
   end
 
   def edit

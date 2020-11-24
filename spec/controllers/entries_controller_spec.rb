@@ -43,7 +43,7 @@ RSpec.describe EntriesController, type: :controller do
     it "creates an entry based on simple_form input" do
       user = User.create!(id: 1, username: "Squid", email: "s@s.com", first_name: "Sid", last_name: "Monty")
       list = List.create!(id: 2, title: "heyo", user: user)
-      post :create, params: {content: "hey", list_id: 2, score: 20, id: 1}
+      post :create, params: {list_id: 1, content: "hey", score: 20}
       expect(response).to render_template("show")
     end
   end
